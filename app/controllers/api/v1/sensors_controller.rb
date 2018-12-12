@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 class Api::V1::SensorsController < ApplicationController
-  before_action :set_sensor, only: %i[show destroy]
+  before_action :set_sensor, only: [:show, :destroy]
+  before_action :set_user, only: [:create, :index]
 
   def index
-    @sensors = Sensor.all
+    if params[:user_email].present?
+      @sensors = @user.sensors.all
+    else
+      @sensors = Sensor.all
+    end
+
     render json: @sensors
   end
 
@@ -15,6 +21,8 @@ class Api::V1::SensorsController < ApplicationController
 
   def create
     @sensor = Sensor.new(sensor_params)
+    @sensor.user_id = @user.id
+
     if @sensor.save!
       render json: @sensor
     else
@@ -33,11 +41,15 @@ class Api::V1::SensorsController < ApplicationController
 
   private
 
+  def set_user
+    @user = User.find_by(email: params[:user_email])
+  end
+
   def set_sensor
     @sensor = Sensor.find(params[:id])
   end
 
   def location_params
-    params.require(:sensor).permit(:topic, :name, :type, :room, :user_id)
+    params.require(:sensor).permit(:topic, :name, :type, :room)
   end
 end
