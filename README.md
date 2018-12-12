@@ -8,4 +8,4 @@
   ```rails db:migrate```
   
   ### To start the server run this command
-      ```rails server``` 
+   ```rails server``` 
