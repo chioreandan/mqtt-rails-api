@@ -25,7 +25,6 @@ class Api::V1::SensorsController < ApplicationController
 
   def create
     @sensor = Sensor.new(sensor_params)
-    @sensor.user_id = @user.id
 
     if @sensor.save!
       render json: @sensor
@@ -54,6 +53,6 @@ class Api::V1::SensorsController < ApplicationController
   end
 
   def sensor_params
-    params.require(:sensor).permit(:topic, :name, :var_type, :room)
+    params.require(:sensor).permit(:topic, :name, :var_type, :room, :user_id)
   end
 end
