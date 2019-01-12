@@ -15,7 +15,11 @@ class Api::V1::UsersController < ApplicationController
     @user = User.find_by(email: user_params[:email])
 
     if @user.password == user_params[:password]
-      render json: 'authorized'
+      render json:
+                  {
+                    email: @user.email,
+                    id: @user.id
+                  }
     else
       render json: 'unauthorized'
     end
