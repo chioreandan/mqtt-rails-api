@@ -5,8 +5,8 @@ class Api::V1::SensorsController < ApplicationController
   before_action :set_user, only: [:create, :index]
 
   def index
-    if params[:user_email].present?
-      @sensors = @user.sensors.all
+    if @user.present?
+      @sensors = @user.sensors.all.find_by(topic: params[:topic])
     else
       @sensors = Sensor.all
     end
