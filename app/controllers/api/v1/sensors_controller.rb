@@ -50,6 +50,6 @@ class Api::V1::SensorsController < ApplicationController
   end
 
   def sensor_params
-    params.require(:sensor).permit(:topic, :name, :type, :room)
+    params.require(:sensor).permit(:topic, :name, :var_type, :room)
   end
 end
