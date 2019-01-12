@@ -6,7 +6,11 @@ class Api::V1::SensorsController < ApplicationController
 
   def index
     if @user.present?
-      @sensors = @user.sensors.all.find_by(room: params[:room].downcase)
+      if parmas[:room].present?
+        @sensors = @user.sensors.all.find_by(room: params[:room].downcase)
+      else
+        @sensors = @user.sensors.all
+      end
     else
       @sensors = Sensor.all
     end
