@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
   def log_in
     @user = User.find_by(email: user_params[:email])
 
-    if @user.password == user_params[:password]
+    if @user&.password == user_params[:password]
       render json:
                   {
                     email: @user.email,
