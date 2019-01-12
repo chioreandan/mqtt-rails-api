@@ -36,7 +36,7 @@ class Api::V1::SensorsController < ApplicationController
 
   def destroy
     @sensor.destroy
-    render json: 'Location deleted'
+    render json: 'Sensor deleted'
   end
 
   private
@@ -49,7 +49,7 @@ class Api::V1::SensorsController < ApplicationController
     @sensor = Sensor.find(params[:id])
   end
 
-  def location_params
+  def sensor_params
     params.require(:sensor).permit(:topic, :name, :type, :room)
   end
 end
