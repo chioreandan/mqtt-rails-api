@@ -5,28 +5,27 @@ class Api::V1::SensorsController < ApplicationController
 
   def index
     if current_user.present?
-      @sensors = current_user.sensors
+      sensors = current_user.sensors
     else
-      @sensors = Sensor.all
+      sensors = Sensor.all
     end
 
-    render json: @sensors
+    render json: sensors
   end
 
   def new
-    @sensor = Sensor.new
-    render json: @sensor
+    sensor = Sensor.new
+    render json: sensor
   end
 
   def create
-    byebug
-    @sensor = Sensor.new(sensor_params)
-    @sensor.user = current_user
+    sensor = Sensor.new(sensor_params)
+    sensor.user = current_user
 
-    if @sensor.save!
-      render json: @sensor
+    if sensor.save
+      render json: sensor
     else
-      render json: @sensor.errors
+      render json: sensor.errors.messages
     end
   end
 

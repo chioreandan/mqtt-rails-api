@@ -9,11 +9,11 @@ class Api::V1::RegistrationsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      render json: @user
+    user = User.new(user_params)
+    if user.save
+      render json: user
     else
-      render json: @user.errors.messages
+      render json: user.errors.messages
     end
   end
 

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AuthController < BaseController
-
   before_action :doorkeeper_authorize!
 
   private
