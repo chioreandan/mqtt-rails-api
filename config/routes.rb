@@ -4,10 +4,8 @@ Rails.application.routes.draw do
   end
   namespace :api do
     namespace :v1 do
+      devise_for :users,  controllers: { registrations: 'api/v1/registrations' }
       resources :sensors, only: [:index, :show, :new, :create, :destroy]
     end
   end
-  devise_for :users,  controllers: { registrations: 'api/v1/registrations' }
-
-  get 'base' => 'base#index'
 end
