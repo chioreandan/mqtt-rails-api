@@ -2,15 +2,10 @@
 
 class Api::V1::SensorsController < ApplicationController
   before_action :set_sensor, only: [:show, :destroy]
-  before_action :set_user, only: [:create, :index]
 
   def index
-    if @user.present?
-      if params[:room].present?
-        @sensors = @user.sensors.all.find_by(room: params[:room].downcase)
-      else
-        @sensors = @user.sensors.all
-      end
+    if current_user.present?
+      @sensors = current_user.sensors
     else
       @sensors = Sensor.all
     end
@@ -20,17 +15,13 @@ class Api::V1::SensorsController < ApplicationController
 
   def new
     @sensor = Sensor.new
-    render json: {
-      topic: @sensor.topic,
-      name: @sensor.name,
-      room: @sensor.room,
-      var_type: @sensor.var_type
-    }
+    render json: @sensor
   end
 
   def create
+    byebug
     @sensor = Sensor.new(sensor_params)
-    @sensor.user_id = @user.id
+    @sensor.user = current_user
 
     if @sensor.save!
       render json: @sensor
