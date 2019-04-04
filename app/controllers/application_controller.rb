@@ -1,32 +1,20 @@
-class ApplicationController < ActionController::Base #ActionController::API
-  protect_from_forgery prepend: true, with: :exception
+class ApplicationController < ActionController::API
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-  attr_reader :current_user
+  before_action :doorkeeper_authorize!
+  respond_to :json
 
   protected
-  def authenticate_request!
-    byebug
-    unless user_id_in_token?
-      render json: { errors: ['Not Authenticated'] }, status: :unauthorized
-      return
-    end
-    @current_user = User.find(auth_token[:user_id])
-  rescue JWT::VerificationError, JWT::DecodeError
-    render json: { errors: ['Not Authenticated'] }, status: :unauthorized
+
+  def configure_permitted_parameters
+    added_attrs = [:email, :first_name, :last_name]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
   private
-  def http_token
-      @http_token ||= if request.headers['Authorization'].present?
-        request.headers['Authorization'].split(' ').last
-      end
-  end
 
-  def auth_token
-    @auth_token ||= JsonWebToken.decode(http_token)
-  end
-
-  def user_id_in_token?
-    http_token && auth_token && auth_token[:user_id].to_i
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 end

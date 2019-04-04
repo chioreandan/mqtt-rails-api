@@ -50,10 +50,6 @@ class Api::V1::SensorsController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find_by(email: params[:user_email])
-  end
-
   def set_sensor
     @sensor = Sensor.find(params[:id])
   end

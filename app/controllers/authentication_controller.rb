@@ -1,21 +1,12 @@
-class AuthenticationController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => :authenticate_user
+# frozen_string_literal: true
 
-  def authenticate_user
-    user = User.find_for_database_authentication(email: params[:email])
-    if user.valid_password?(params[:password])
-      render json: payload(user)
-    else
-      render json: {errors: ['Invalid Username/Password']}, status: :unauthorized
-    end
-  end
+class AuthController < BaseController
+
+  before_action :doorkeeper_authorize!
 
   private
 
-  def payload(user)
-    {
-      auth_token: JsonWebToken.encode({user_id: user.id}),
-      user: {id: user.id, email: user.email}
-    }
-  end
+    def current_app_user
+      User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+    end
 end
