@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 user = User.create(email: 'chiorean.dan12@gmail.com', password: '123456', password_confirmation: '123456')
 
