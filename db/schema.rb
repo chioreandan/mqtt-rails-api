@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_131637) do
+ActiveRecord::Schema.define(version: 2019_04_10_185403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2019_03_31_131637) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
   create_table "sensors", force: :cascade do |t|
     t.bigint "user_id"
     t.string "topic"
@@ -82,5 +91,6 @@ ActiveRecord::Schema.define(version: 2019_03_31_131637) do
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "products", "users"
   add_foreign_key "sensors", "users"
 end
