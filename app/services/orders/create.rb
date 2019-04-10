@@ -15,7 +15,7 @@ module Orders
     def call
       @product_ids.each do |id|
         product = Product.find(id)
-        @products << product
+        @products << product unless product.nil?
       end
 
       @order.products << @products
