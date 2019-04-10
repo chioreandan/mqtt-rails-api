@@ -41,7 +41,7 @@ class Api::V1::SensorsController < ApplicationController
   private
 
   def set_sensor
-    @sensor = Sensor.find(params[:id])
+    @sensor = current_user.sensor.find(params[:id])
   end
 
   def sensor_params
