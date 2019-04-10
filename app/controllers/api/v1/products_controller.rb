@@ -34,10 +34,10 @@ class Api::V1::ProductsController < ApplicationController
   private
 
   def set_product
-    @product = current_user.product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :rfid)
+    params.require(:product).permit(:name, :code)
   end
 end
