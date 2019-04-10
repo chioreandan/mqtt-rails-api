@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :sensors
-  has_many :products
+  has_many :orders
 end
