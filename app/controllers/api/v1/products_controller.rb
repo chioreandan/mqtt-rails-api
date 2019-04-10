@@ -16,7 +16,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
+    product = Product.create(product_params)
 
     render json: product
   end

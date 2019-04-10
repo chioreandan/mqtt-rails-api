@@ -16,16 +16,13 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(order_params)
+    service = Orders::Create.call(
+      product_ids: params[:product_ids],
+      order_params: order_params,
+      user_id: current_user&.id
+    )
 
-    products_ids = params[:products_ids]
-
-    products = []
-    products_ids.each do |p|
-      products << Product.find(p)
-    end
-
-    render json: order
+    render json: service.order
   end
 
   def show
@@ -41,7 +38,7 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def set_order
-    @order = current_user.order.find(params[:id])
+    @order = current_user.orders.find(params[:id])
   end
 
   def order_params
