@@ -2,27 +2,52 @@
 
 user = User.create(email: 'chiorean.dan12@gmail.com', password: '123456', password_confirmation: '123456')
 
-Sensor.create([
+Product.create([
                 {
                   user: user,
-                  topic: 'Topic 1',
-                  name: 'Sensor 1',
-                  var_type: 'Integer',
-                  room: 'DormRoom'
+                  name: "Codul lui DaVinci",
+                  code: "9780552149518"
                 },
                 {
                   user: user,
-                  topic: 'Topic 2',
-                  name: 'Sensor 2',
-                  var_type: 'Integer',
-                  room: 'DormRoom'
+                  name: "Fortareata Digitala",
+                  code: "9780552151696"
                 },
                 {
                   user: user,
-                  topic: 'Topic 3',
-                  name: 'Sensor 3',
-                  var_type: 'Integer',
-                  room: 'DormRoom'
+                  name: "Make Me by Lee Child",
+                  code: "9780857502681"
                 }
               ]
              )
+
+Order.create([
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+            ])
+
+Order.first.products << Product.first
+Order.first.products << Product.last
+
+Order.second.products << Product.second
+
+Order.third.products << Product.first
+Order.third.products << Product.second
+Order.thirs.products << Product.last
+
+Order.first.save!
+Order.second.save!
+Order.third.save!

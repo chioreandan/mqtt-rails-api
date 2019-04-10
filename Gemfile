@@ -14,6 +14,7 @@ gem 'active_model_serializers', '~> 0.10.9'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'doorkeeper', '~> 5.0', '>= 5.0.2'
 gem 'mqtt', '~> 0.5.0'
+gem 'sidekiq', '~> 5.2', '>= 5.2.5'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
