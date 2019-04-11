@@ -1,7 +1,53 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+user = User.create(email: 'chiorean.dan12@gmail.com', password: '123456', password_confirmation: '123456')
+
+Product.create([
+                {
+                  user: user,
+                  name: "Codul lui DaVinci",
+                  code: "9780552149518"
+                },
+                {
+                  user: user,
+                  name: "Fortareata Digitala",
+                  code: "9780552151696"
+                },
+                {
+                  user: user,
+                  name: "Make Me by Lee Child",
+                  code: "9780857502681"
+                }
+              ]
+             )
+
+Order.create([
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+              {
+                user: user,
+                start_date: Time.now,
+                end_date: Time.now + 20.days
+              },
+            ])
+
+Order.first.products << Product.first
+Order.first.products << Product.last
+
+Order.second.products << Product.second
+
+Order.third.products << Product.first
+Order.third.products << Product.second
+Order.thirs.products << Product.last
+
+Order.first.save!
+Order.second.save!
+Order.third.save!
