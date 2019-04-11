@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :sensors, only: [:index, :show, :new, :create, :destroy]
       resources :orders, only: [:index, :show, :new, :create, :destroy]
       resources :products, only: [:index, :show, :new, :create, :destroy]
+      resources :cards, only: [:create]
     end
   end
 end
