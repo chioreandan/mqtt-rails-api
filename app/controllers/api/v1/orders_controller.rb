@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :update]
 
   def index
     orders = Order.all
@@ -33,6 +33,12 @@ class Api::V1::OrdersController < ApplicationController
     @order.destroy
 
     render json: 'Product destroyed'
+  end
+
+  def update
+    @order.update(order_params)
+
+    render json: @order
   end
 
   private
