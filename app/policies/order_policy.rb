@@ -2,7 +2,7 @@
 
 class OrderPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    show?
   end
 
   def show?

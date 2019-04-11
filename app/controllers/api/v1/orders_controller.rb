@@ -4,7 +4,11 @@ class Api::V1::OrdersController < ApplicationController
   before_action :set_order, only: [:show, :destroy, :update]
 
   def index
-    orders = Order.all
+    if current_user.admin?
+      orders = Order.all
+    else
+      orders = current_user.orders
+    end
     authorize orders
 
     render json: orders
