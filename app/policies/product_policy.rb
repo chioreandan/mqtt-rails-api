@@ -6,19 +6,20 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
+    user.admin? ||
+      user.customer?
   end
 
   def create?
-    show?
+    user.admin?
   end
 
   def update?
-    show?
+    create?
   end
 
   def destroy?
-    show?
+    create?
   end
 
   def as_json

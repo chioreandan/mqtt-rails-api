@@ -5,6 +5,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def index
     products = Product.all
+    products = filter(products) if params[:q].present?
     authorize products
 
     render json: products
@@ -51,5 +52,10 @@ class Api::V1::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :code)
+  end
+
+  def filter(products)
+    products.ransack(params[:q])
+      .result
   end
 end
