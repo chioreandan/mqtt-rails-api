@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :destroy, :update]
 
   def index
-    orders = Order.all
+    if current_user.admin?
+      orders = Order.all
+    else
+      orders = current_user.orders
+    end
+    authorize orders
 
     render json: orders
   end
@@ -21,18 +26,28 @@ class Api::V1::OrdersController < ApplicationController
       order_params: order_params,
       user_id: current_user&.id
     )
+    authorize service.order
 
     render json: service.order
   end
 
   def show
+    authorize @order
     render json: @order
   end
 
   def destroy
+    authorize @order
     @order.destroy
 
     render json: 'Product destroyed'
+  end
+
+  def update
+    authorize @order
+    @order.update(order_params)
+
+    render json: @order
   end
 
   private
