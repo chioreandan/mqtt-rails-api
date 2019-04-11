@@ -5,6 +5,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def index
     orders = Order.all
+    authorize orders
 
     render json: orders
   end
@@ -21,21 +22,25 @@ class Api::V1::OrdersController < ApplicationController
       order_params: order_params,
       user_id: current_user&.id
     )
+    authorize service.order
 
     render json: service.order
   end
 
   def show
+    authorize @order
     render json: @order
   end
 
   def destroy
+    authorize @order
     @order.destroy
 
     render json: 'Product destroyed'
   end
 
   def update
+    authorize @order
     @order.update(order_params)
 
     render json: @order

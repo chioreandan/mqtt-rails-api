@@ -5,6 +5,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def index
     products = Product.all
+    authorize products
 
     render json: products
   end
@@ -23,16 +24,20 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def show
+    authorize @product
+
     render json: @product
   end
 
   def destroy
+    authorize @product
     @product.destroy
 
     render json: 'Product destroyed'
   end
 
   def update
+    authorize @product
     @product.update(product_params)
 
     render json: @product

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ProductPolicy < ApplicationPolicy
+  def index?
+    show?
+  end
+
   def show?
     user.admin?
   end
@@ -10,6 +14,10 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def update?
+    show?
+  end
+
+  def destroy?
     show?
   end
 
