@@ -8,18 +8,47 @@ module Orders
 
     def init
       @products = []
-      @order = Order.create(order_params)
-      @order.user_id = @user_id
+      @user = User.find(user_id)
     end
 
     def call
-      @product_ids.each do |id|
-        product = Product.find(id)
-        @products << product unless product.nil?
+      build_order(@order_params)
+      add_products_to_order(@order)
+      success_callback(@order) if @order.save!
+    end
+
+    private
+
+      def success_callback(order)
+        send_order_mail(order)
+        enque_order_mail(order)
       end
 
-      @order.products << @products
-      @order.save!
-    end
+      def build_order(order_params)
+        @order = Order.create(order_params)
+        @order.user = @user
+      end
+
+      def add_products_to_order(order)
+        @product_ids.each do |id|
+          product = Product.find(id)
+          @products << product unless product.nil?
+        end
+
+        @order.products << @products
+      end
+
+      def send_order_mail(order)
+        OrderMailer.with(order: order, user: @user)
+                   .new_order(order, @user)
+                   .deliver_now
+      end
+
+      def enque_order_mail(order)
+        Orders::EndMail.call(
+          order_id: order.id,
+          user_id: @user.id
+        )
+      end
   end
 end

@@ -27,9 +27,7 @@ class Api::V1::OrdersController < ApplicationController
       user_id: current_user&.id
     )
     authorize service.order
-    OrderMailer.with(order: service.order, user: current_user)
-               .new_order(service.order, current_user)
-               .deliver_now
+
 
     render json: service.order
   end
