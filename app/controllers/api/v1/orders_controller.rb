@@ -28,6 +28,7 @@ class Api::V1::OrdersController < ApplicationController
     )
     authorize service.order
 
+
     render json: service.order
   end
 
