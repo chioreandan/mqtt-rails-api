@@ -18,7 +18,7 @@
         %th.text-center{scope: "col"} Product code
       - @order.products.each.with_index do |p, index|
         %tr
-          %td.text-right= index
+          %td.text-right= index + 1
           %td.text-center= p.name
           %td.text-center= p.code
   .row.mt-5

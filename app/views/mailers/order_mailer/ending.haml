@@ -1,0 +1,10 @@
+.container
+  .row
+    .col-md-6.col-sm-12
+      .email-subtitle
+        Salut #{@user.email}
+  .row.justify-content-center
+    .col-md-6.col-sm-12
+      %p.font-weight-bold Comanda este aproape de finalizare
+    .col-md-6.col-sm-12
+      %p Comanda ta se termina: #{@order.end_date.strftime("%d/%m/%Y %H:%M")}

@@ -27,7 +27,7 @@ module Orders
 
       def send_order_mail
         OrderMailer.with(order: @order, user: @user)
-                   .new_order(@order, @user)
+                   .ending(@order, @user)
                    .deliver_now
       end
   end
