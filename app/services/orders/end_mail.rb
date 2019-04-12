@@ -2,7 +2,7 @@
 
 module Orders
   class EndMail < Service::Base
-    END_THRESHOLD = 1.minutes.freeze
+    END_THRESHOLD = 30.minutes.freeze
 
     parameters :order_id, :user_id
 
