@@ -12,6 +12,13 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors', '~>  0.4.0'
 gem 'mqtt', '~> 0.5.0'
 
+# Views
+gem 'haml-rails', '~> 2.0'
+gem 'premailer-rails', '~> 1.10', '>= 1.10.2'
+gem 'sass-rails', '~> 5.0', '>= 5.0.7'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+
 # Models
 gem 'active_model_serializers', '~> 0.10.9'
 gem 'ransack', '~> 2.1', '>= 2.1.1'
@@ -30,6 +37,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener', '~> 1.7'
   gem 'awesome_print', '~> 1.8'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem "binding_of_caller"

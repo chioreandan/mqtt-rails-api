@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-6.col-sm-12
+      .email-subtitle
+        Salut #{@user.email}
+  .row.justify-content-center
+    .col-md-6.col-sm-12
+      %p.font-weight-bold Comanda ta a fost trimisa.
+  .row.justify-content-center
+    .col-md-6.col-sm-12
+      %p.font-weight-bold Aici sunt produsele pe care le-ai comandat
+
+  %table.table.mt-5.mb05
+    %tbody
+      %tr
+        %th.text-right{scope: "col"} #
+        %th.text-center{scope: "col"} Product name
+        %th.text-center{scope: "col"} Product code
+      - @order.products.each.with_index do |p, index|
+        %tr
+          %td.text-right= index
+          %td.text-center= p.name
+          %td.text-center= p.code
+  .row.mt-5
+    .col-md-6.col-sm-12
+      %p Comanda incepe in: #{@order.start_date.strftime("%d/%m/%Y %H:%M")}
+    .col-md-6.col-sm-12
+      %p Si se termina in: #{@order.end_date.strftime("%d/%m/%Y %H:%M")}
