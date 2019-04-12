@@ -48,16 +48,25 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    awesome_print (1.8.0)
     bcrypt (3.1.12)
+    better_errors (2.5.1)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.2)
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
     case_transform (0.2)
       activesupport
+    coderay (1.1.2)
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
     crass (1.0.4)
+    debug_inspector (0.0.3)
     devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -177,6 +186,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.9)
+  awesome_print (~> 1.8)
+  better_errors (~> 2.5, >= 2.5.1)
+  binding_of_caller
   bootsnap (>= 1.1.0)
   byebug
   devise (~> 4.6, >= 4.6.1)
