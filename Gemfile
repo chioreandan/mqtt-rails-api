@@ -13,7 +13,7 @@ gem 'rack-cors', '~>  0.4.0'
 gem 'mqtt', '~> 0.5.0'
 
 # Views
-gem 'haml-rails', '~> 2.0'
+gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'premailer-rails', '~> 1.10', '>= 1.10.2'
 gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 gem 'bootstrap', '~> 4.3.1'
