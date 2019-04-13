@@ -4,17 +4,14 @@ user = User.create(email: 'chiorean.dan12@gmail.com', password: '123456', passwo
 
 Product.create([
                 {
-                  user: user,
                   name: "Codul lui DaVinci",
                   code: "9780552149518"
                 },
                 {
-                  user: user,
                   name: "Fortareata Digitala",
                   code: "9780552151696"
                 },
                 {
-                  user: user,
                   name: "Make Me by Lee Child",
                   code: "9780857502681"
                 }
@@ -46,7 +43,7 @@ Order.second.products << Product.second
 
 Order.third.products << Product.first
 Order.third.products << Product.second
-Order.thirs.products << Product.last
+Order.third.products << Product.last
 
 Order.first.save!
 Order.second.save!
