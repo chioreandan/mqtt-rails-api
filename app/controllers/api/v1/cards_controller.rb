@@ -17,15 +17,20 @@ class Api::V1::CardsController < ApplicationController
   def log_in
     card = Card.find_by(uid: params[:uid])
 
-    access_token = Doorkeeper::AccessToken.create!(
-      resource_owner_id: card.user.id,
-      expires_in: Doorkeeper.configuration.access_token_expires_in,
-      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
-    )
+    if card && card.authenticate(params[:code])
+      access_token = Doorkeeper::AccessToken.create!(
+        resource_owner_id: card.user.id,
+        expires_in: Doorkeeper.configuration.access_token_expires_in,
+        use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
+      )
+      token_response = Doorkeeper::OAuth::TokenResponse.new(access_token)
 
-    token_response = Doorkeeper::OAuth::TokenResponse.new(access_token)
+      render json: token_response.body
+    else
+      message = 'UID or CODE are invalid'
+      render json: { message: message }, status: :unauthorized
+    end
 
-    render json: token_response.body
   end
 
   private
