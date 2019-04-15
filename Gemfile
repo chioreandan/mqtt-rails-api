@@ -27,6 +27,7 @@ gem 'ransack', '~> 2.1', '>= 2.1.1'
 gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'doorkeeper', '~> 5.0', '>= 5.0.2'
 gem 'pundit', '~> 2.0', '>= 2.0.1'
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 # Background Jobs
 gem 'sidekiq', '~> 5.2', '>= 5.2.5'
