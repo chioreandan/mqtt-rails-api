@@ -22,6 +22,7 @@ gem 'jquery-rails'
 # Models
 gem 'active_model_serializers', '~> 0.10.9'
 gem 'ransack', '~> 2.1', '>= 2.1.1'
+gem 'annotate', '~> 2.7', '>= 2.7.4'
 
 # Authorization and Authentication
 gem 'devise', '~> 4.6', '>= 4.6.1'
