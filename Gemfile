@@ -40,6 +40,7 @@ end
 
 group :development do
   gem 'letter_opener', '~> 1.7'
+  gem 'rails-erd', '~> 1.5', '>= 1.5.2'
   gem 'awesome_print', '~> 1.8'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem "binding_of_caller"

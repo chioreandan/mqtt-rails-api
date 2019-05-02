@@ -14,7 +14,9 @@ module Orders
     def call
       build_order(@order_params)
       add_products_to_order(@order)
-      success_callback(@order) if @order.save!
+      # success_callback(@order) if @order.save!
+
+      # TODO: ReEnable mailers
     end
 
     private
