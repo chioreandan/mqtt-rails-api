@@ -21,7 +21,7 @@ class Api::V1::ProductsController < ApplicationController
     @product = Product.create(product_params)
     authorize @product
 
-    render json: product
+    render json: @product
   end
 
   def show
