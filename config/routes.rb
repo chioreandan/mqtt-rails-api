@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :users,  controllers: { registrations: 'api/v1/registrations' }
       resources :sensors, only: [:index, :show, :new, :create, :destroy]
-      resources :orders, only: [:index, :show, :new, :create, :destroy]
-      resources :products, only: [:index, :show, :new, :create, :destroy]
+      resources :orders, only: [:index, :show, :new, :create, :destroy, :update]
+      resources :products, only: [:index, :show, :new, :create, :destroy, :update]
       resources :cards, only: [:create] do
         collection do
           get :log_in
