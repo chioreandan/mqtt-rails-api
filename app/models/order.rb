@@ -4,6 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  end_date   :datetime
+#  returned   :boolean          default(FALSE)
 #  start_date :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

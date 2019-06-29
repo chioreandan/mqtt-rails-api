@@ -1,11 +1,11 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: orders
 #
 #  id         :bigint(8)        not null, primary key
 #  end_date   :datetime
+#  returned   :boolean          default(FALSE)
 #  start_date :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -20,9 +20,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :start_date, :end_date, :time_until_end
+  attributes :id, :start_date, :end_date, :time_until_end, :returned
 
   belongs_to :user
   belongs_to :products
