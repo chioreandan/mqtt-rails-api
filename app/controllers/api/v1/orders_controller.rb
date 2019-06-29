@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :destroy, :update]
+  before_action :set_order, only: [:show, :destroy, :update, :return_order]
 
   def index
     if current_user.admin?
@@ -10,6 +10,18 @@ class Api::V1::OrdersController < ApplicationController
       orders = current_user.orders
     end
     authorize orders
+
+    render json: orders
+  end
+
+  def returned
+    orders = current_user.orders.where(returned: true)
+
+    render json: orders
+  end
+
+  def not_returned
+    orders = current_user.orders.where(returned: false)
 
     render json: orders
   end
@@ -47,6 +59,12 @@ class Api::V1::OrdersController < ApplicationController
   def update
     authorize @order
     @order.update(order_params)
+
+    render json: @order
+  end
+
+  def return_order
+    @order.update(returned: true)
 
     render json: @order
   end
