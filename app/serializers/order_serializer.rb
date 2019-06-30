@@ -3,13 +3,14 @@
 #
 # Table name: orders
 #
-#  id         :bigint(8)        not null, primary key
-#  end_date   :datetime
-#  returned   :boolean          default(FALSE)
-#  start_date :datetime
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  user_id    :bigint(8)
+#  id          :bigint(8)        not null, primary key
+#  end_date    :datetime
+#  returned    :boolean          default(FALSE)
+#  returned_at :datetime
+#  start_date  :datetime
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint(8)
 #
 # Indexes
 #
@@ -21,7 +22,7 @@
 #
 
 class OrderSerializer < ActiveModel::Serializer
-  attributes :id, :start_date, :end_date, :time_until_end, :returned
+  attributes :id, :start_date, :end_date, :time_until_end, :returned, :returned_at
 
   belongs_to :user
   belongs_to :products

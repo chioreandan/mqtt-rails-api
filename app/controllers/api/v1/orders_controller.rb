@@ -64,7 +64,7 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def return_order
-    @order.update(returned: true)
+    @order.update(returned: true, returned_at: Time.now)
 
     render json: @order
   end
