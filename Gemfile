@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.1'
 gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'rack-cors', '~>  0.4.0'
+gem 'rack-cors', '~> 1.0.5'
 gem 'mqtt', '~> 0.5.0'
 
 # Views
