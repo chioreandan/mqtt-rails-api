@@ -26,7 +26,7 @@ gem 'annotate', '~> 2.7', '>= 2.7.4'
 
 # Authorization and Authentication
 gem 'devise', '~> 4.6', '>= 4.6.1'
-gem 'doorkeeper', '~> 5.0', '>= 5.0.2'
+gem 'doorkeeper', '~> 5.0'
 gem 'pundit', '~> 2.0', '>= 2.0.1'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
