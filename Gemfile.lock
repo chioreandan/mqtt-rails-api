@@ -147,7 +147,8 @@ GEM
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     rack (2.2.3)
-    rack-cors (0.4.1)
+    rack-cors (1.0.5)
+      rack (>= 1.6.0)
     rack-protection (2.0.5)
       rack
     rack-test (1.1.0)
@@ -270,7 +271,7 @@ DEPENDENCIES
   premailer-rails (~> 1.10, >= 1.10.2)
   puma (~> 3.12)
   pundit (~> 2.0, >= 2.0.1)
-  rack-cors (~> 0.4.0)
+  rack-cors (~> 1.0.5)
   rails (~> 5.2.1)
   rails-erd (~> 1.5, >= 1.5.2)
   ransack (~> 2.1, >= 2.1.1)
