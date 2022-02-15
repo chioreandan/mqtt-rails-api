@@ -7,7 +7,7 @@ ruby '2.4.4'
 
 gem 'rails', '~> 5.2.1'
 gem 'pg', '~> 0.21'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors', '~> 1.0.5'
 gem 'mqtt', '~> 0.5.0'
